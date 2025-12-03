@@ -49,17 +49,25 @@ function ChatPopup() {
     <>
       <button
         onClick={handleToggle}
-        className="fixed bottom-9 right-9 w-14 h-14 rounded-full bg-linear-to-r from-[#7565D9] to-[#4D0ACD] text-white text-2xl flex items-center justify-center shadow-[0_8px_24px_rgba(95,62,184,0.20)] hover:scale-110 transition-all z-999">
+        className="fixed bottom-9 right-9 w-14 h-14 rounded-full 
+             bg-linear-to-r from-[#7565D9] to-[#4D0ACD] text-white text-2xl 
+             flex items-center justify-center shadow-[0_8px_24px_rgba(95,62,184,0.20)]
+             hover:scale-110 transition-all z-[999]">
         💬
         {unreadCount > 0 && (
-          <span className="absolute -top-1 -right-1 bg-red-500 text-white w-6 h-6 flex items-center justify-center rounded-full text-[10px] font-bold">
+          <span
+            className="absolute -top-1 -right-1 bg-red-500 text-white 
+                     w-6 h-6 flex items-center justify-center rounded-full 
+                     text-[10px] font-bold">
             {unreadCount}
           </span>
         )}
       </button>
 
       {isOpen && (
-        <div className="fixed bottom-[100px] right-6 w-[400px] h-[500px] bg-white rounded-xl shadow-2xl flex flex-col z-998 animate-scaleIn">
+        <div
+          className="fixed bottom-[100px] right-6 w-[400px] h-[500px] bg-white 
+                  rounded-xl shadow-2xl flex flex-col z-[998] animate-scaleIn">
           <div className="flex items-center justify-between px-4 py-3 border-b border-gray-200">
             <div className="flex gap-3">
               <button
