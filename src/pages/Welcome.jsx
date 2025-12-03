@@ -1,4 +1,7 @@
 import { useState, useEffect, useRef } from "react";
+import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { setRole } from "../store/storeComponent/userComponent";
 import gsap from "gsap";
 
 const roleCards = [
@@ -26,19 +29,11 @@ const RoleCard = ({ role, isSelected, onClick }) => {
   const cardRef = useRef(null);
 
   useEffect(() => {
-    if (isSelected) {
-      gsap.to(cardRef.current, {
-        scale: 1.02,
-        duration: 0.3,
-        ease: "power2.out"
-      });
-    } else {
-      gsap.to(cardRef.current, {
-        scale: 1,
-        duration: 0.3,
-        ease: "power2.out"
-      });
-    }
+    gsap.to(cardRef.current, {
+      scale: isSelected ? 1.02 : 1,
+      duration: 0.3,
+      ease: "power2.out"
+    });
   }, [isSelected]);
 
   const containerClass = isSelected
@@ -63,44 +58,36 @@ const RoleCard = ({ role, isSelected, onClick }) => {
 
 function Welcome() {
   const [selectedRole, setSelectedRole] = useState(null);
+
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+
   const badgeRef = useRef(null);
   const titleRef = useRef(null);
   const subtitleRef = useRef(null);
   const cardsRef = useRef(null);
   const buttonRef = useRef(null);
 
+  const handleContinue = () => {
+    if (!selectedRole) return;
+
+    dispatch(setRole(selectedRole));
+    navigate(`/${selectedRole}`);
+  };
+
   useEffect(() => {
     const tl = gsap.timeline({ defaults: { ease: "power3.out" } });
 
-    tl.fromTo(
-      badgeRef.current,
-      { opacity: 0, y: -30 },
-      { opacity: 1, y: 0, duration: 0.6 }
-    )
-      .fromTo(
-        titleRef.current,
-        { opacity: 0, y: 20 },
-        { opacity: 1, y: 0, duration: 0.6 },
-        "-=0.3"
-      )
-      .fromTo(
-        subtitleRef.current,
-        { opacity: 0, y: 20 },
-        { opacity: 1, y: 0, duration: 0.6 },
-        "-=0.4"
-      )
+    tl.fromTo(badgeRef.current, { opacity: 0, y: -30 }, { opacity: 1, y: 0, duration: 0.6 })
+      .fromTo(titleRef.current, { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.6 }, "-=0.3")
+      .fromTo(subtitleRef.current, { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.6 }, "-=0.4")
       .fromTo(
         cardsRef.current.children,
         { opacity: 0, y: 30, scale: 0.9 },
         { opacity: 1, y: 0, scale: 1, duration: 0.5, stagger: 0.15 },
         "-=0.3"
       )
-      .fromTo(
-        buttonRef.current,
-        { opacity: 0, y: 20 },
-        { opacity: 1, y: 0, duration: 0.5 },
-        "-=0.2"
-      );
+      .fromTo(buttonRef.current, { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.5 }, "-=0.2");
   }, []);
 
   useEffect(() => {
@@ -118,16 +105,17 @@ function Welcome() {
   return (
     <div className="min-h-screen flex flex-col items-center justify-center p-6">
       <div className="max-w-[800px] w-full text-center">
+
         <div
           ref={badgeRef}
-          className="inline-flex items-center justify-center w-[134px] h-[31px] gap-[7px] px-[9px] text-sm font-semibold leading-none rounded-2xl bg-gradient-to-r from-[#7565D9] to-[#4D0ACD] text-white mx-auto"
+          className="inline-flex items-center justify-center w-fit h-8 gap-2 px-3 text-sm font-semibold leading-none rounded-2xl bg-linear-to-r from-[#7565D9] to-[#4D0ACD] text-white mx-auto"
         >
           <StarIcon />
           Intervue Poll
         </div>
 
         <h1 ref={titleRef} className="text-3xl font-semibold mt-6">
-          Welcome to the <strong>Live Polling System</strong>
+          Welcome to the <strong className="font-semibold">Live Polling System</strong>
         </h1>
 
         <p ref={subtitleRef} className="text-gray-600 mt-4 mb-10">
@@ -147,13 +135,15 @@ function Welcome() {
 
         <button
           ref={buttonRef}
+          onClick={handleContinue}
           disabled={!selectedRole}
-          className={`w-[233.93px] h-[57.58px] cursor-pointer rounded-[34px] p-0 text-white text-base font-semibold flex items-center justify-center mx-auto bg-linear-to-r from-[#8F64E1] to-[#1D68BD] transition-transform duration-200 ${
-            selectedRole ? "hover:-translate-y-0.5" : "opacity-100 cursor-not-allowed"
+          className={`w-[233.93px] h-[57.58px] rounded-[34px] text-white text-base font-semibold flex items-center justify-center mx-auto bg-gradient-to-r from-[#8F64E1] to-[#1D68BD] transition-all ${
+            selectedRole ? "cursor-pointer hover:-translate-y-0.5" : "opacity-50 cursor-not-allowed"
           }`}
         >
           Continue
         </button>
+
       </div>
     </div>
   );
