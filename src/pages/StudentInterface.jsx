@@ -127,7 +127,7 @@ function StudentInterface() {
       return;
     }
     dispatch(setName(nameInput.trim()));
-    socketService.emit("student:join", { name: nameInput.trim() });
+    socketService.emit("student:join", nameInput.trim());
   };
 
   const handleAnswerSelect = (i) => {
