@@ -14,7 +14,7 @@ import {
 import { setStudents } from "../store/storeComponent/studentComponent";
 import { addMessage, setMessages } from "../store/storeComponent/chatComponent";
 import ChatPopup from "../components/ChatPopup";
-import KickedOut from "../components/RemoveStudnet";
+import KickedOut from "../components/RemoveStudent";
 
 const StarIcon = () => (
   <svg width="16" height="16" viewBox="0 0 20 20" fill="white">
