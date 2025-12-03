@@ -5,6 +5,7 @@ import RemovedStudent from "./components/RemoveStudent.jsx";
 import StudentInterface from "./pages/StudentInterface.jsx";
 import HandleError from "./components/HandleError.jsx";
 import TeacherDashboard from "./pages/TeacherDashboard.jsx";
+import PollHistory from "./pages/PollHistory.jsx";
 
 const App = () => {
   const { isKicked } = useSelector((state) => state.user);
@@ -23,6 +24,7 @@ const App = () => {
           </HandleError>
         }
       />
+      <Route path="/teacher/history" element={<PollHistory />} />
       <Route path="/" element={<Welcome />} />
       <Route path="/student" element={<StudentInterface />} />
     </Routes>

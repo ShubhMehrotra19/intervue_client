@@ -156,10 +156,10 @@ function StudentInterface() {
 
   if (!studentName)
     return (
-      <div className="min-h-screen flex justify-center items-center p-10 bg-white">
+      <div className="min-h-screen flex justify-center p-10 pt-20 bg-white">
         <div
           ref={contentRef}
-          className="max-w-[500px] w-full mt-[60px] flex flex-col items-center text-center">
+          className="max-w-[500px] w-full mt-[60px] flex flex-col items-center justify-center text-center">
           <Badge />
           <h2 className="text-[36px] leading-[1.2] mb-2 text-gray-900">
             <span className="font-normal">Let&apos;s</span>{" "}
@@ -215,7 +215,7 @@ function StudentInterface() {
       <div className="min-h-screen flex justify-center items-center p-10 bg-white">
         <div
           ref={contentRef}
-          className="max-w-[500px] w-full mt-[60px] flex flex-col items-center text-center">
+          className="max-w-[500px] w-full mt-10 flex flex-col items-center text-center">
           <Badge />
           <div className="w-10 h-10 rounded-full border-[3px] border-[rgba(108,92,231,0.1)] border-t-[#6C5CE7] animate-spin mb-6" />
           <h2 className="text-[28px] md:text-[36px] leading-[1.2] text-gray-900 whitespace-nowrap">
