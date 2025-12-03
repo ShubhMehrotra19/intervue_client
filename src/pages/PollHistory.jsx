@@ -102,7 +102,7 @@ function PollHistory() {
             <p className="text-[#6E6E6E] text-[16px] mb-6">No poll history available yet.</p>
 
             <button
-              onClick={() => navigate("/create-poll")}
+              onClick={() => navigate("/teacher")}
               className="bg-gradient-to-r from-[#8F64E1] to-[#5E4DBD] text-white px-6 py-3 rounded-lg font-semibold hover:-translate-y-0.5 transition"
             >
               Create Your First Poll
