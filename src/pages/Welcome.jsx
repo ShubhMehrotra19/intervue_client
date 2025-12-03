@@ -46,7 +46,7 @@ const RoleCard = ({ role, isSelected, onClick }) => {
       onClick={onClick}
       className={`${containerClass} cursor-pointer transition-shadow duration-200 hover:shadow-md`}
     >
-      <div className="bg-white rounded-2xl p-6 text-left min-h-[140px] flex flex-col items-start justify-start">
+      <div className="bg-white rounded-2xl p-6 text-left min-h-[140px] min-w-[390px] flex flex-col items-start justify-start">
         <h3 className="mb-2 font-semibold text-xl text-gray-900">{role.title}</h3>
         <p className="text-base font-normal leading-[1.4] text-[#454545]">
           {role.description}
@@ -104,7 +104,7 @@ function Welcome() {
 
   return (
     <div className="min-h-screen flex flex-col items-center justify-center p-6">
-      <div className="max-w-[800px] w-full text-center">
+      <div className="max-w-[900px] w-full text-center">
 
         <div
           ref={badgeRef}
@@ -137,7 +137,7 @@ function Welcome() {
           ref={buttonRef}
           onClick={handleContinue}
           disabled={!selectedRole}
-          className={`w-[233.93px] h-[57.58px] rounded-[34px] text-white text-base font-semibold flex items-center justify-center mx-auto bg-gradient-to-r from-[#8F64E1] to-[#1D68BD] transition-all ${
+          className={`w-[233.93px] h-[57.58px] rounded-[34px] text-white text-base font-semibold flex items-center justify-center mx-auto bg-linear-to-r from-[#8F64E1] to-[#1D68BD] transition-all ${
             selectedRole ? "cursor-pointer hover:-translate-y-0.5" : "opacity-50 cursor-not-allowed"
           }`}
         >
